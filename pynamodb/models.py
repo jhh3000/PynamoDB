@@ -1075,6 +1075,8 @@ class Model(AttributeContainer, metaclass=MetaModel):
         unprocessed_items = data.get(UNPROCESSED_KEYS).get(cls.Meta.table_name, {}).get(KEYS, None)  # type: ignore
         return item_data, unprocessed_items
 
+    _connection_class = TableConnection
+
     @classmethod
     def _get_connection(cls) -> TableConnection:
         """
@@ -1097,7 +1099,7 @@ class Model(AttributeContainer, metaclass=MetaModel):
                 ),
             )
         if cls._connection is None:
-            cls._connection = TableConnection(cls.Meta.table_name,
+            cls._connection = cls._connection_class(cls.Meta.table_name,
                                               region=cls.Meta.region,
                                               host=cls.Meta.host,
                                               connect_timeout_seconds=cls.Meta.connect_timeout_seconds,
