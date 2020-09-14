@@ -7,4 +7,4 @@ A simple abstraction over DynamoDB
 """
 __author__ = 'Jharrod LaFon'
 __license__ = 'MIT'
-__version__ = '5.0.0b1.dev2'
+__version__ = '5.0.0b1.dev3'
